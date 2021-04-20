@@ -1,0 +1,142 @@
+:root {
+    --primary-text-color: #035755;
+    --secondary-text-color: #FF383D;
+    --color-gray: #4B4F51;
+    --color-red: #FB4C47;
+}
+
+* {
+    font-family: Red Hat Display, serif;
+}
+
+#header {
+    margin: 40px 100px;
+}
+
+.standard-logo {
+    position: absolute;
+    top: 30%;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    text-transform: uppercase;
+    color: var(--primary-text-color);
+}
+
+.logo-title a:hover {
+    text-decoration: none;
+    color: var(--primary-text-color);
+}
+
+.logo-title,
+.logo-img {
+    padding: 0 10px;
+    float: left;
+}
+
+
+/* Menu */
+.menu {
+    margin: 0;
+}
+
+#site-navigation {
+    float: right;
+}
+
+.menu-item {
+    list-style-type: none;
+    padding: 10px 10px;
+    float: left;
+}
+
+.menu-item a {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 2rem;
+    text-decoration: none;
+    color: var(--primary-text-color);
+}
+
+.menu-item a:hover {
+    text-decoration: none;
+    color: var(--secondary-text-color);
+}
+
+/*Content*/
+.info.container {
+    padding-top: 100px;
+    max-width: 500px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.part {
+    padding: 40px 0;
+}
+
+.title-1 {
+    margin: 20px 0;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--secondary-text-color);
+}
+
+.title-2 {
+    margin: 20px 0;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2.3rem;
+    line-height: 122%;
+    text-transform: capitalize;
+    color: var(--primary-text-color);
+}
+
+.message {
+    margin: 20px 0;
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2rem;
+    letter-spacing: 0;
+    text-transform: capitalize;
+    color: var(--color-gray);
+}
+
+.modal,
+.modal.fade.in{
+    opacity: 1 !important;
+}
+
+.btn.alert-btn {
+    font-style: normal;
+    font-weight: bold;
+    margin: 20px 0;
+    width: 200px;
+    height: 70px;
+    color: white;
+    background-color: var(--color-red);
+    box-shadow: 0 8px 87px rgba(0, 0, 0, 0.1);
+    text-transform: capitalize;
+    border-radius: 65px;
+}
+
+.image.container {
+    padding: 0;
+    margin: 0;
+}
+
+.image img {
+    max-width: 100%;
+    object-fit: cover;
+}
+.image-right img {
+    float: right;
+}
+.image-left img {
+    float: left;
+}
