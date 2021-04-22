@@ -92,12 +92,19 @@ registerBlockType('udemy/inspector-controls-example', {
         },
     },
     edit: (props) => {
-        add_img = (media) => {
+        const add_img = (media) => {
             props.setAttributes({
                 img_ID: media.id,
                 img_alt: media.url,
                 img_URL: media.url
             })
+        };
+        const remove_img = () => {
+            props.setAttributes({
+                img_ID: null,
+                img_URL: null,
+                img_alt: null,
+            });
         };
         return [
             <BlockControls>
@@ -154,7 +161,14 @@ registerBlockType('udemy/inspector-controls-example', {
             </div>,
             <div className={props.className}>
                 {props.attributes.img_ID ? (
-                    getImage(props.attributes.img_URL, props.attributes.img_alt)
+                    <div className="image-ctr">
+                        {getImage(props.attributes.img_URL, props.attributes.img_alt)}
+                        {props.isSelected ? (
+                            <Button className="btn-remove" onClick={remove_img}>
+                            Remove
+                            </Button>
+                            ) : null}
+                    </div>
                 ) : (
                     <MediaUploadCheck>
                         <MediaUpload
