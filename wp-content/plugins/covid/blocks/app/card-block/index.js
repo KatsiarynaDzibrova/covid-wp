@@ -108,12 +108,10 @@ registerBlockType('covid/card', {
                     </MediaUploadCheck>
                 )}
             </div>,
-            <div className="row part">
-                <div id="info-content" className="container col-sm info">
-                    <h3 className="title-2"> {props.attributes.header} </h3>
-                    <p className="props.attributes.message"> {props.attributes.message} </p>
-                </div>
-            </div>,
+            <div id="info-content" className="info-card-message center-block">
+                <h3 className="title-2 info-title"> {props.attributes.header} </h3>
+                <p className="props.attributes.message"> {props.attributes.message} </p>
+            </div>
         ];
     },
     save: (props) => {
