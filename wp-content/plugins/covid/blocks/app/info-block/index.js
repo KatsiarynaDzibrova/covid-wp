@@ -27,6 +27,34 @@ const getMessage = (primary_header, secondary_header, message) => {
     );
 }
 
+const getButton = (button_text) => {
+    return (
+        <div>
+            <button type="button" className="btn alert-btn"
+                    data-toggle="modal" data-target="#myModal">
+                {button_text}
+            </button>
+            <div className="modal fade" id="myModal" role="dialog">
+                <div className="modal-dialog modal-sm">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <button type="button" className="close" data-dismiss="modal">&times;</button>
+                            <h4 className="modal-title">{button_text}</h4>
+                        </div>
+                        <div className="modal-body">
+                            <p>This is a small modal.</p>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-default" data-dismiss="modal">Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 registerBlockType('udemy/inspector-controls-example', {
     title: __('Info', 'recipe'),
     description: __('Info.', 'recipe'),
@@ -55,6 +83,9 @@ registerBlockType('udemy/inspector-controls-example', {
             source: 'attribute',
             attribute: 'src',
             selector: 'img'
+        },
+        button_text: {
+            type: 'text'
         },
         text_alignment: {
             type: 'string',
@@ -101,12 +132,24 @@ registerBlockType('udemy/inspector-controls-example', {
                         onChange={(new_val) => {
                             props.setAttributes({message: new_val})
                         }}/>
+                    <TextareaControl
+                        label={__('Button', 'covid')}
+                        help={__('Button label. This button opens a modal ' +
+                            'with email and message fields.', 'covid')}
+                        value={props.attributes.button_text}
+                        onChange={(new_val) => {
+                            props.setAttributes({button_text: new_val})
+                        }}/>
                 </PanelBody>
             </InspectorControls>,
             <div className="row part">
                 <div id="info-content" className="container col-sm info">
                     {getMessage(props.attributes.primary_header,
                         props.attributes.secondary_header, props.attributes.message)}
+                    <button type="button" className="btn alert-btn"
+                            data-toggle="modal" data-target="#myModal">
+                        {props.attributes.button_text}
+                    </button>
                 </div>
             </div>,
             <div className={props.className}>
@@ -144,6 +187,7 @@ registerBlockType('udemy/inspector-controls-example', {
                         <div id="info-content" className="container col-sm info">
                             {getMessage(props.attributes.primary_header,
                                 props.attributes.secondary_header, props.attributes.message)}
+                            {getButton(props.attributes.button_text)}
                         </div>
                     </div>
                 );
@@ -153,6 +197,7 @@ registerBlockType('udemy/inspector-controls-example', {
                         <div id="info-content" className="container col-sm info">
                             {getMessage(props.attributes.primary_header,
                                 props.attributes.secondary_header, props.attributes.message)}
+                            {getButton(props.attributes.button_text)}
                         </div>
                         <div className="container col-sm image image-right">
                             {getImage(props.attributes.img_URL, props.attributes.img_alt)}
@@ -165,6 +210,7 @@ registerBlockType('udemy/inspector-controls-example', {
                         <div id="info-content" className="container center-block">
                             {getMessage(props.attributes.primary_header,
                                 props.attributes.secondary_header, props.attributes.message)}
+                            {getButton(props.attributes.button_text)}
                         </div>
                         <div className="container image center-block">
                             {getImage(props.attributes.img_URL, props.attributes.img_alt)}
