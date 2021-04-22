@@ -145,3 +145,28 @@
 .center-block {
     text-align: center;
 }
+
+/*Card block*/
+.wp-block-covid-card.container{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin: auto;
+    border: 0;
+    width: 80%;
+    max-width: 350px;
+    height: 100%;
+    display: flex;
+    box-shadow: 0 5px 80px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+}
+
+.wp-block-covid-card.container:hover{
+    box-shadow: 0px 35px 87px rgba(0, 0, 0, 0.11), 0 2px 0 var(--color-red);
+}
+.info-carg-img{
+    height: 300px;
+}
+.info-title {
+    font-size: 1.5rem;
+}
