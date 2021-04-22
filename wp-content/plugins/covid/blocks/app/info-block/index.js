@@ -55,9 +55,9 @@ const getButton = (button_text) => {
     );
 }
 
-registerBlockType('udemy/inspector-controls-example', {
-    title: __('Info', 'recipe'),
-    description: __('Info.', 'recipe'),
+registerBlockType('udemy/info', {
+    title: __('Info', 'covid'),
+    description: __('Info.', 'covid'),
     category: 'common',
     attributes: {
         primary_header: {
@@ -93,6 +93,7 @@ registerBlockType('udemy/inspector-controls-example', {
         },
         text_alignment: {
             type: 'string',
+            default: 'left'
         },
     },
     edit: (props) => {
