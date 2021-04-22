@@ -125,18 +125,23 @@
     border-radius: 65px;
 }
 
-.image.container {
-    padding: 0;
-    margin: 0;
-}
-
 .image img {
     max-width: 100%;
     object-fit: cover;
 }
+
 .image-right img {
+    padding: 0;
+    margin: 0;
     float: right;
 }
 .image-left img {
+    padding: 0;
+    margin: 0;
     float: left;
+}
+
+.center-block.image,
+.center-block {
+    text-align: center;
 }

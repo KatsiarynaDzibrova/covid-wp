@@ -1,6 +1,7 @@
 const {registerBlockType} = wp.blocks;
 const {
     InspectorControls, MediaUpload,
+    AlignmentToolbar, BlockControls,
     MediaUploadCheck
 } = wp.editor;
 const {__} = wp.i18n;
@@ -9,6 +10,22 @@ const {
     CheckboxControl, Button,
     RadioControl, RangeControl
 } = wp.components;
+
+const getImage = (img_URL, img_alt) => {
+    return (
+        <img src={img_URL} alt={img_alt}/>
+    );
+};
+
+const getMessage = (primary_header, secondary_header, message) => {
+    return (
+        <div>
+            <h3 className="title-1"> {primary_header} </h3>
+            <h2 className="title-2"> {secondary_header} </h2>
+            <p className="message"> {message} </p>
+        </div>
+    );
+}
 
 registerBlockType('udemy/inspector-controls-example', {
     title: __('Info', 'recipe'),
@@ -38,7 +55,10 @@ registerBlockType('udemy/inspector-controls-example', {
             source: 'attribute',
             attribute: 'src',
             selector: 'img'
-        }
+        },
+        text_alignment: {
+            type: 'string',
+        },
     },
     edit: (props) => {
         add_img = (media) => {
@@ -49,6 +69,15 @@ registerBlockType('udemy/inspector-controls-example', {
             })
         };
         return [
+            <BlockControls>
+                <AlignmentToolbar
+                    value={props.attributes.text_alignment}
+                    onChange={(value) => {
+                        console.log(value)
+                        props.setAttributes({text_alignment: value})
+                    }}
+                />
+            </BlockControls>,
             <InspectorControls>
                 <PanelBody title={__('Input Examples', 'covid')}>
                     <TextareaControl
@@ -76,16 +105,13 @@ registerBlockType('udemy/inspector-controls-example', {
             </InspectorControls>,
             <div className="row part">
                 <div id="info-content" className="container col-sm info">
-                    <h3 className="title-1"> {props.attributes.primary_header} </h3>
-                    <h2 className="title-2"> {props.attributes.secondary_header} </h2>
-                    <p className="message"> {props.attributes.message} </p>
+                    {getMessage(props.attributes.primary_header,
+                        props.attributes.secondary_header, props.attributes.message)}
                 </div>
             </div>,
             <div className={props.className}>
                 {props.attributes.img_ID ? (
-                    <div className="container col-sm image image-right">
-                        <img src={props.attributes.img_URL} alt={props.attributes.img_alt}/>
-                    </div>
+                    getImage(props.attributes.img_URL, props.attributes.img_alt)
                 ) : (
                     <MediaUploadCheck>
                         <MediaUpload
@@ -108,18 +134,43 @@ registerBlockType('udemy/inspector-controls-example', {
         ];
     },
     save: (props) => {
-        return (
-            <div className="row part">
-                <div id="info-content" className="container col-sm info">
-                    <h3 className="title-1"> {props.attributes.primary_header} </h3>
-                    <h2 className="title-2"> {props.attributes.secondary_header} </h2>
-                    <p className="message"> {props.attributes.message} </p>
-                </div>
-                <div className="container col-sm image image-right">
-                    <img src={props.attributes.img_URL} alt={props.attributes.img_alt}/>
-                </div>
-            </div>
-        )
+        switch (props.attributes.text_alignment) {
+            case'right':
+                return (
+                    <div className="row part">
+                        <div className="container col-sm image image-right">
+                            {getImage(props.attributes.img_URL, props.attributes.img_alt)}
+                        </div>
+                        <div id="info-content" className="container col-sm info">
+                            {getMessage(props.attributes.primary_header,
+                                props.attributes.secondary_header, props.attributes.message)}
+                        </div>
+                    </div>
+                );
+            case'left':
+                return (
+                    <div className="row part">
+                        <div id="info-content" className="container col-sm info">
+                            {getMessage(props.attributes.primary_header,
+                                props.attributes.secondary_header, props.attributes.message)}
+                        </div>
+                        <div className="container col-sm image image-right">
+                            {getImage(props.attributes.img_URL, props.attributes.img_alt)}
+                        </div>
+                    </div>
+                );
+            case'center':
+                return (
+                    <div className="center-block">
+                        <div id="info-content" className="container center-block">
+                            {getMessage(props.attributes.primary_header,
+                                props.attributes.secondary_header, props.attributes.message)}
+                        </div>
+                        <div className="container image center-block">
+                            {getImage(props.attributes.img_URL, props.attributes.img_alt)}
+                        </div>
+                    </div>
+                )
+        }
     },
-
 });
